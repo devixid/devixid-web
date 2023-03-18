@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "Checking your code..."
+echo "This may take a while..."
+
+npm run lint || (
+  echo "Oops! you have a problem in your code";
+  false;
+)
+
+echo "No error found. Commiting this now..."
+
+npx lint-staged
