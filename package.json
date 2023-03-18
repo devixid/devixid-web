@@ -52,7 +52,7 @@
   },
   "lint-staged": {
     "**/*.{md,json,css}": [
-      "prettier --config='./.prettierrc.json' --write"
+      "prettier --write"
     ],
     "**/*.js": [
       "eslint './**/*.js' --fix"

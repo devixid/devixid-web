@@ -9,6 +9,11 @@ npm run lint || (
   false;
 )
 
-echo "No error found. Commiting this now..."
-
 npx lint-staged
+
+echo "Done! formatting SVG files..."
+
+# format all SVG files
+npm run svgo:all
+
+echo "No error found. Commiting this now..."
