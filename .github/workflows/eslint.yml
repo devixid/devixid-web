@@ -45,11 +45,5 @@ jobs:
           npm install @typescript-eslint/parser
 
       - name: Run ESLint
-        # run: npx eslint .
-        #   --config .eslintrc.json
-        #   --ext .js,.jsx,.ts,.tsx
-        #   --format @microsoft/eslint-formatter-sarif
-        #   --output-file eslint-results.sarif
-        # run: npm run lint
-        run: npx eslint "./src/**/*.{ts,tsx}"" --config="./.eslintrc.json" --format="@microsoft/eslint-formatter-sarif" --output-file="eslint-results.sarif"
+        run: npx eslint "./src/**/*.{ts,tsx}" --config="./.eslintrc.json" --format="@microsoft/eslint-formatter-sarif" --output-file="eslint-results.sarif"
         continue-on-error: false
