@@ -1,8 +1,0 @@
-version: "3.9"
-services:
-  web:
-    build: .
-    environment:
-      - NODE_ENV=production
-    ports:
-      - 8080:8001
