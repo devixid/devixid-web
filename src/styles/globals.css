@@ -4,12 +4,17 @@
 
 @layer base {
   body {
-    @apply text-body;
+    @apply bg-white-smoke text-body;
   }
 }
 
 @layer components {
   .container {
+    @apply w-full max-w-sm sm:max-w-xl lg:max-w-5xl xl:max-w-7xl;
+    /* @apply w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl; */
+  }
+
+  .navbar-container {
     @apply w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl;
   }
 
@@ -31,5 +36,11 @@
     @apply border-2 border-headline bg-transparent text-headline;
     @apply hover:bg-headline hover:text-white focus:bg-headline focus:text-white;
     @apply disabled:bg-transparent disabled:text-headline;
+  }
+}
+
+@screen lg {
+  .lg\:unset {
+    display: unset;
   }
 }

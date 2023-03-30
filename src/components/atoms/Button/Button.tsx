@@ -34,13 +34,13 @@ export default function Button({
   function getButtonSize(): string {
     switch (size) {
       case "sm":
-        return clsx("py-2 px-3", "text-xs");
+        return clsx("py-2 px-3", "text-sm");
 
       case "lg":
         return clsx("py-4 px-5");
 
       default:
-        return clsx("py-3 px-4", "text-sm");
+        return clsx("py-3 px-4");
     }
   }
 
