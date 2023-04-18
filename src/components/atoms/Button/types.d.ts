@@ -9,7 +9,7 @@ declare global {
     /**
      * Button variant
      */
-    variant?: "outline-default";
+    variant?: "outline-default" | "default";
     /**
      * Button size
      */

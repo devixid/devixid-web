@@ -11,9 +11,9 @@ module.exports = {
         ...defaultTheme.colors,
         white: {
           DEFAULT: "#ffffff",
-          smoke: "#F7F7F7"
+          smoke: "#f1f4f9"
         },
-        body: "#616571",
+        body: "#515561",
         headline: {
           DEFAULT: "#1A1A1A"
         }

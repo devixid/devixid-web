@@ -10,16 +10,19 @@
     "commit": "cz",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
-    "svgo:all": "npm-run-all 'svgo:assets' 'svgo:icons'",
+    "svgo:all": "npm-run-all 'svgo:assets' 'svgo:icons' 'svgo:illustrations'",
     "svgo:assets": "svgo --config='./svgo.config.js' --folder='./src/assets'",
-    "svgo:icons": "svgo --config='./svgo.config.js' --folder='./src/assets/icons'"
+    "svgo:icons": "svgo --config='./svgo.config.js' --folder='./src/assets/icons'",
+    "svgo:illustrations": "svgo --config='./svgo.config.js' --folder='./src/assets/illustrations'"
   },
   "dependencies": {
     "@types/node": "18.14.5",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "clsx": "^1.2.1",
+    "framer-motion": "^10.10.0",
     "next": "13.2.3",
+    "next-seo": "^5.15.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },

@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { MouseEvent } from "react";
@@ -56,10 +57,14 @@ export default function NavigationBar() {
   };
 
   return (
-    <div className={clsx("min-h-[80px] w-full", "fixed top-0 left-0 z-40", "bg-white")}>
+    <motion.div
+      initial={{ translateY: -100 }}
+      animate={{ translateY: 0 }}
+      className={clsx("min-h-[80px] w-full", "fixed top-0 left-0 z-40", "bg-white-smoke")}
+    >
       <div
         className={clsx(
-          "container mx-auto md:h-[90px] lg:h-[100px]",
+          "navbar-container mx-auto md:h-[90px] lg:h-[100px]",
           "p-4",
           "flex flex-row items-center justify-between"
         )}
@@ -80,7 +85,7 @@ export default function NavigationBar() {
         >
           <nav
             className={clsx(
-              "container mx-auto h-screen p-4 md:h-auto md:w-auto",
+              "navbar-container mx-auto h-screen p-4 md:h-auto md:w-auto",
               "flex flex-col gap-4 md:flex-row md:gap-5 lg:gap-6",
               "flex items-center justify-center"
             )}
@@ -126,7 +131,10 @@ export default function NavigationBar() {
                 openNavigationMenu ? "translate-y-0 rotate-45 delay-300" : "translate-y-2.5"
               )}
             />
-            <div id="icon" className={clsx(baseNavMenuTogglerIcon, openNavigationMenu ? "w-0" : "delay-150")} />
+            <div
+              id="icon"
+              className={clsx(baseNavMenuTogglerIcon, openNavigationMenu ? "w-0 opacity-0" : "delay-150")}
+            />
             <div
               id="icon"
               className={clsx(
@@ -137,6 +145,6 @@ export default function NavigationBar() {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

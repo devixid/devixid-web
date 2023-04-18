@@ -7,13 +7,12 @@
 # More details at https://github.com/eslint/eslint
 # and https://eslint.org
 
-name: ESLint
+name: ESLint workflow
 
 on:
   push:
     branches: ["master", "develop"]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: ["master", "develop"]
   schedule:
     - cron: "32 16 * * 4"
@@ -30,20 +29,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install Dependencies
+        run: npm install
+        continue-on-error: false
+
       - name: Install ESLint
-        run: npm install eslint
-          npm install eslint-config-airbnb
-          npm install eslint-config-next
-          npm install eslint-config-prettier
-          npm install eslint-plugin-import
-          npm install @microsoft/eslint-formatter-sarif@2.1.7
-          npm install eslint-plugin-jsx-a11y
-          npm install eslint-plugin-prettier
-          npm install eslint-plugin-react
-          npm install eslint-plugin-react-hooks
-          npm install @typescript-eslint/eslint-plugin
-          npm install @typescript-eslint/parser
+        run: npm install
 
       - name: Run ESLint
-        run: npx eslint "./src/**/*.{ts,tsx}" --config="./.eslintrc.json" --format="@microsoft/eslint-formatter-sarif" --output-file="eslint-results.sarif"
+        run: npm run lint
         continue-on-error: false
