@@ -1,18 +1,7 @@
 /* eslint-disable react/button-has-type */
 import clsx from "clsx";
 
-export default function Button({
-  type,
-  children,
-  className,
-  disabled,
-  id,
-  onClick,
-  ref,
-  title,
-  variant,
-  size
-}) {
+export default function Button({ type, children, className, disabled, id, onClick, ref, title, variant, size }) {
   /**
    * get button type
    * @returns <string> `className`
