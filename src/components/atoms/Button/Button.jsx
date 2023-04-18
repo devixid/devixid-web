@@ -1,23 +1,12 @@
 /* eslint-disable react/button-has-type */
 import clsx from "clsx";
 
-export default function Button({
-  type,
-  children,
-  className,
-  disabled,
-  id,
-  onClick,
-  ref,
-  title,
-  variant,
-  size
-}: ButtonProps) {
+export default function Button({ type, children, className, disabled, id, onClick, ref, title, variant, size }) {
   /**
    * get button type
    * @returns <string> `className`
    */
-  function getButtonVariant(): string {
+  function getButtonVariant() {
     switch (variant) {
       case "outline-default":
         return clsx("btn btn-outline-default");
@@ -31,7 +20,7 @@ export default function Button({
    * get button size
    * @returns <string> `className`
    */
-  function getButtonSize(): string {
+  function getButtonSize() {
     switch (size) {
       case "sm":
         return clsx("py-2 px-3", "text-sm");

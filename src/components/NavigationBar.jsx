@@ -2,7 +2,6 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import type { MouseEvent } from "react";
 import { useState } from "react";
 
 import DevixLogo from "@/assets/devix-logo.svg";
@@ -11,7 +10,7 @@ import Line from "@/icons/ic-line.svg";
 import { Button } from "./atoms";
 
 export default function NavigationBar() {
-  const [openNavigationMenu, setOpenNavigationMenu] = useState<boolean>(false);
+  const [openNavigationMenu, setOpenNavigationMenu] = useState(false);
 
   const router = useRouter();
 
@@ -49,7 +48,7 @@ export default function NavigationBar() {
    * Function to handle the onClick menu
    * @param event HTML Anchor Event
    */
-  const handleOnClick = (event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>) => {
+  const handleOnClick = (event) => {
     const { href } = event.currentTarget;
 
     setOpenNavigationMenu(false);
