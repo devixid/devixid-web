@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm ci
+RUN npm install
 RUN npm run lint
 RUN npm run build
 

@@ -12,12 +12,12 @@ export default function Button({
   title,
   variant,
   size
-}: ButtonProps) {
+}) {
   /**
    * get button type
    * @returns <string> `className`
    */
-  function getButtonVariant(): string {
+  function getButtonVariant() {
     switch (variant) {
       case "outline-default":
         return clsx("btn btn-outline-default");
@@ -31,7 +31,7 @@ export default function Button({
    * get button size
    * @returns <string> `className`
    */
-  function getButtonSize(): string {
+  function getButtonSize() {
     switch (size) {
       case "sm":
         return clsx("py-2 px-3", "text-sm");

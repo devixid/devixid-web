@@ -1,10 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/** @type {import('tailwindcss').Config} */
 
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./src/**/*.{ts,tsx,css}"],
+  content: ["./src/**/*.{js,jsx,css}"],
   theme: {
     extend: {
       colors: {
