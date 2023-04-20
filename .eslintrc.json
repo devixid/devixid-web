@@ -13,7 +13,6 @@
     "plugin:import/warnings",
     "plugin:prettier/recommended"
   ],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -21,7 +20,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "import", "prettier"],
+  "plugins": ["react", "react-hooks", "import", "prettier"],
   "rules": {
     "linebreak-style": "off",
     "quotes": ["error", "double"],
