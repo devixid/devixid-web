@@ -8,11 +8,9 @@ import ServiceWebDesignIllustration from "@/assets/illustrations/service--webdes
 import ServiceWebDevIllustration from "@/assets/illustrations/service--webdev-illustration.svg";
 
 import { Button } from "@/components/atoms";
+import { initialAnimation, viewportAnimation, whileInViewAnimation } from "@/constants/framer-motion";
 
 export default function HomePage() {
-  const initialAnimation = { opacity: 0, translateY: 40 };
-  const whileInViewAnimation = { opacity: 1, translateY: 0 };
-  const viewportAnimation = { once: true, amount: 1 };
   const ourServices = [
     {
       title: "Website Design",

@@ -8,12 +8,12 @@
     "build": "next build",
     "start": "next start",
     "commit": "cz",
-    "lint": "eslint './src/**/*.{js,jsx}'",
-    "lint:fix": "eslint './src/**/*.{js,jsx}' --fix",
-    "svgo:all": "npm-run-all 'svgo:assets' 'svgo:icons' 'svgo:illustrations'",
-    "svgo:assets": "svgo --config='./svgo.config.js' --folder='./src/assets'",
-    "svgo:icons": "svgo --config='./svgo.config.js' --folder='./src/assets/icons'",
-    "svgo:illustrations": "svgo --config='./svgo.config.js' --folder='./src/assets/illustrations'"
+    "lint": "eslint \"./src/**/*.{js,jsx}\" --config=\"./.eslintrc.json\"",
+    "lint:fix": "eslint \"./src/**/*.{js,jsx}\" --config=\"./.eslintrc.json\" --fix",
+    "svgo:all": "npm-run-all \"svgo:assets\" \"svgo:icons\" \"svgo:illustrations\"",
+    "svgo:assets": "svgo --config=\"./svgo.config.js\" --folder=\"./src/assets\"",
+    "svgo:icons": "svgo --config=\"./svgo.config.js\" --folder=\"./src/assets/icons\"",
+    "svgo:illustrations": "svgo --config=\"./svgo.config.js\" --folder=\"./src/assets/illustrations\""
   },
   "dependencies": {
     "@types/node": "18.14.5",
@@ -57,8 +57,8 @@
     "**/*.{md,json,css}": [
       "prettier --write"
     ],
-    "**/*.js": [
-      "eslint './**/*.js' --fix"
+    "**/*.{js,jsx}": [
+      "eslint \"./**/*.{js,jsx}\" --fix"
     ]
   },
   "config": {
