@@ -5,7 +5,7 @@
 Clone this project and change to `develop` branch
 
 ```bash
-$ git clone https://github.com/devixid/devixid-web.git
+$ git clone https://github.com/devixid/devixid-web.git && cd devixid-web
 $ git checkout develop
 ```
 
