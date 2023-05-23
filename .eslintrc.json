@@ -6,43 +6,28 @@
   },
   "extends": [
     "next/core-web-vitals",
+    "eslint:recommended",
     "plugin:react/recommended",
-    "airbnb",
-    "next",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:prettier/recommended"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "overrides": [],
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": ["react", "react-hooks", "import", "prettier"],
   "rules": {
-    "linebreak-style": "off",
-    "quotes": ["error", "double"],
-    "no-undef": "off",
     "camelcase": "off",
-    "max-len": [
-      "error",
-      {
-        "code": 120,
-        "ignoreComments": true,
-        "ignoreTrailingComments": true,
-        "ignoreUrls": true,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true,
-        "ignoreRegExpLiterals": true
-      }
-    ],
     "import/no-unresolved": "off",
-    "import/prefer-default-export": "off",
-    "import/extensions": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "react/require-default-props": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/react-in-jsx-scope": "off"
   }
 }

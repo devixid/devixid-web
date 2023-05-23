@@ -1,149 +1,130 @@
+"use client";
+
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-import DevixLogo from "@/assets/devix-logo.svg";
-import Line from "@/icons/ic-line.svg";
+import { NAVIGATION_BAR_LINKS } from "@/constants/navigation";
+import { useWindow } from "@/hooks";
 
-import { Button } from "./atoms";
+const navbarTogglerIcon = clsx("w-8 h-[1px] absolute", "border-0", "bg-black");
 
 export default function NavigationBar() {
-  const [openNavigationMenu, setOpenNavigationMenu] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [navContainerHeight, setNavContainerHeight] = useState(0);
 
-  const router = useRouter();
+  const navContainerRef = useRef(null);
+  const { paneSize } = useWindow();
 
-  const baseNavMenuTogglerIcon = clsx(
-    "h-0.5 w-8",
-    "bg-headline",
-    "absolute",
-    "transition-all duration-300 ease-in-out"
-  );
+  const handleToggle = useCallback(() => {
+    setIsOpen((prevState) => !prevState);
+  }, []);
 
-  const navigations = [
-    {
-      path: "/",
-      label: "Home"
-    },
-    {
-      path: "/portfolio",
-      label: "Portfolio"
-    },
-    {
-      path: "/about",
-      label: "About Us"
-    },
-    {
-      path: "/services",
-      label: "Services"
-    },
-    {
-      path: "/contact",
-      label: "Contact"
+  useEffect(() => {
+    if (navContainerRef.current) {
+      setNavContainerHeight(navContainerRef.current.scrollHeight || 0);
     }
-  ];
+  }, []);
 
-  /**
-   * Function to handle the onClick menu
-   * @param event HTML Anchor Event
-   */
-  const handleOnClick = (event) => {
-    const { href } = event.currentTarget;
-
-    setOpenNavigationMenu(false);
-    router.push(href);
-  };
+  useEffect(() => {
+    if (navContainerRef.current) {
+      setNavContainerHeight(navContainerRef.current.scrollHeight || 0);
+    }
+  }, [paneSize]);
 
   return (
-    <motion.div
-      initial={{ translateY: -100 }}
-      animate={{ translateY: 0 }}
-      className={clsx("min-h-[80px] w-full", "fixed top-0 left-0 z-40", "bg-white-smoke")}
+    <div
+      className={clsx(
+        "static z-40 lg:fixed",
+        "w-full",
+        "border-b border-b-gray-200",
+        "bg-white lg:bg-opacity-50 lg:backdrop-blur-md"
+      )}
     >
-      <div
-        className={clsx(
-          "navbar-container mx-auto md:h-[90px] lg:h-[100px]",
-          "p-4",
-          "flex flex-row items-center justify-between"
-        )}
-      >
-        {/* Logo */}
-        <div className="md:w-28">
-          <DevixLogo className={clsx("h-12 w-12", "text-headline")} />
-        </div>
+      <div className={clsx("container p-4 lg:py-5", "flex flex-row flex-wrap items-center justify-between")}>
+        <Link href="/" className={clsx("h-12 w-12 lg:w-32", "flex items-center")}>
+          <Image
+            src="/logo.svg"
+            alt="Logo"
+            title="Logo"
+            height={45}
+            width={45}
+            className={clsx("h-12 w-12 lg:h-14 lg:w-14")}
+          />
+        </Link>
 
-        {/* Navigation menu */}
-        <div
-          className={clsx(
-            "transition-[height] duration-500 ease-in-out",
-            "w-full overflow-hidden bg-slate-50 md:w-fit md:overflow-auto md:bg-transparent",
-            "fixed top-0 left-0 -z-[5] md:static md:z-0",
-            openNavigationMenu ? clsx("h-[100vh] delay-300 md:h-auto") : "h-0 md:h-auto"
-          )}
+        <button
+          type="button"
+          className={clsx("relative h-11 w-11", "flex flex-col items-center justify-center", "lg:hidden")}
+          onClick={handleToggle}
+          title="Open Navigation Menu"
         >
-          <nav
+          <div
             className={clsx(
-              "navbar-container mx-auto h-screen p-4 md:h-auto md:w-auto",
-              "flex flex-col gap-4 md:flex-row md:gap-5 lg:gap-6",
-              "flex items-center justify-center"
+              navbarTogglerIcon,
+              "transition-all duration-300",
+              isOpen ? "translate-y-0 rotate-[135deg]" : "translate-y-1.5"
             )}
+          ></div>
+          <div
+            className={clsx(
+              navbarTogglerIcon,
+              "transition-all duration-300",
+              isOpen ? "translate-y-0 rotate-[225deg]" : "-translate-y-1.5"
+            )}
+          ></div>
+        </button>
+
+        <nav
+          className={clsx(
+            "relative w-full overflow-hidden lg:w-auto",
+            "h-0 lg:h-auto",
+            "transition-[height] duration-300"
+          )}
+          style={{
+            height: isOpen ? `${navContainerHeight}px` : undefined
+          }}
+          aria-hidden={!isOpen}
+        >
+          <ul
+            className={clsx(
+              "flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-6",
+              "py-2",
+              "font-medium lg:whitespace-nowrap"
+            )}
+            ref={navContainerRef}
           >
-            {navigations.map(({ path, label }, index) => {
+            {NAVIGATION_BAR_LINKS.map(({ title, href, disabled }, index) => {
               const key = index.toString();
-              const isSelected = router.pathname === path;
 
               return (
-                <Link
-                  href={path}
-                  title={label}
-                  key={key}
-                  className={clsx("text-lg font-semibold", "relative inline-block", isSelected && "text-headline")}
-                  onClick={handleOnClick}
-                >
-                  {label}
-                  {isSelected && (
-                    <Line
-                      className={clsx("h-auto w-full max-w-[44px]", "absolute -bottom-1 right-0 z-10 ", "text-body")}
-                    />
+                <li key={key}>
+                  {disabled ? (
+                    <span className="cursor-not-allowed text-gray-300" title="disabled">
+                      {title}
+                    </span>
+                  ) : (
+                    <Link className={clsx("hover:text-black focus:text-black")} href={href} title={`go to "${title}"`}>
+                      {title}
+                    </Link>
                   )}
-                </Link>
+                </li>
               );
             })}
-          </nav>
-        </div>
 
-        {/* Buttons */}
-        <div className="flex flex-row gap-4 md:w-28 md:justify-end">
-          <Button variant="outline-default">Let&rsquo;s talk!</Button>
+            <li className="w-full lg:hidden">
+              <button type="button" className={clsx("btn btn-full btn-black")}>
+                Let&rsquo;s talk
+              </button>
+            </li>
+          </ul>
+        </nav>
 
-          <button
-            type="button"
-            title="Navigation Menu Toggler"
-            className={clsx("relative h-11 w-11 md:invisible md:hidden", "flex flex-col items-center justify-center")}
-            onClick={() => setOpenNavigationMenu((state) => !state)}
-          >
-            <div
-              id="icon"
-              className={clsx(
-                baseNavMenuTogglerIcon,
-                openNavigationMenu ? "translate-y-0 rotate-45 delay-300" : "translate-y-2.5"
-              )}
-            />
-            <div
-              id="icon"
-              className={clsx(baseNavMenuTogglerIcon, openNavigationMenu ? "w-0 opacity-0" : "delay-150")}
-            />
-            <div
-              id="icon"
-              className={clsx(
-                baseNavMenuTogglerIcon,
-                openNavigationMenu ? "translate-y-0 -rotate-45 delay-300" : "-translate-y-2.5"
-              )}
-            />
-          </button>
-        </div>
+        <button type="button" className={clsx("btn btn-black", "hidden w-32 lg:block")}>
+          Let&rsquo;s talk
+        </button>
       </div>
-    </motion.div>
+    </div>
   );
 }
